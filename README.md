@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Caantin AI Script Builder Node Editor
+
+A simplified version of a single key component of the Caantin AI Script Builder: the Node Properties Panel and visual representation of nodes. This application allows non-technical users to create and edit voice conversation nodes through an intuitive visual interface.
+
+## Features
+
+- Form-based editor for configuring node properties
+- Support for 3 node types: Greeting, Question, and Information
+- Type-specific form fields (e.g., message text for Greeting, question text and options for Question)
+- Visual preview showing how the node will appear in the flow diagram
+- Ability to save node configuration
+- Validation for required fields
+- Toggle to switch between node types
+- Visual styling that differentiates node types in the preview
+- Responsive design that works on mobile and desktop
+- Micro-animations for enhanced user experience
+
+## Technologies Used
+
+- React & Next.js 15
+- TypeScript for type safety
+- TailwindCSS for styling
+- Framer Motion for animations
+- ShadCN UI for component foundation
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/NazaAdimoha/script-builder-node-editor.git
+cd script-builder-node-editor
+```
+
+2. Install dependencies
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `/app`: Next.js app router files
+- `/components`: React components
+  - `/ui`: Reusable UI components
+  - `/node-editor`: Node editor specific components
+- `/types`: TypeScript type definitions
+- `/lib`: Utility functions
 
-## Learn More
+## Implementation Details
 
-To learn more about Next.js, take a look at the following resources:
+### Node Types
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application supports three node types:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. **Greeting Node**: For initial conversation greetings
+   - Contains a message field
 
-## Deploy on Vercel
+2. **Question Node**: For asking questions with multiple choice answers
+   - Contains a question field
+   - Contains multiple option fields
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+3. **Information Node**: For providing information to the customer
+   - Contains a message field
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### User Experience Considerations
+
+- Form validation to ensure all required fields are filled
+- Visual differentiation between node types using color coding
+- Micro-animations to provide feedback and enhance user experience
+- Responsive design that works well on both desktop and mobile
+- Intuitive interface for non-technical users
+- Clear visual preview of how nodes will appear in the script
+
+## Design Decisions
+
+- **Color Scheme**: Used a professional blue color palette for the Caantin AI brand, with different accent colors for each node type
+- **Component Architecture**: Created reusable components with clear separation of concerns
+- **Animation**: Added subtle animations to enhance UX without distracting from the main functionality
+- **Validation**: Implemented immediate validation feedback to help users understand requirements
+- **Preview**: Included a real-time preview so users can see exactly how their node will appear
+
+## Future Enhancements
+
+- Connection between nodes to build complete conversation flows
+- Draggable interface for node positioning
+- Undo/redo functionality
+- Export/import of node configurations
+- Node templates for common conversation patterns
+- Voice preview functionality

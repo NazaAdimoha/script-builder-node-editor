@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { HelpCircle, Plus, X } from 'lucide-react';
-import { QuestionNode } from '@/types/node';
-import { Textarea } from '../ui/text-area';
+"use client";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { HelpCircle, Plus, X } from "lucide-react";
+import { QuestionNode } from "@/types/node";
+import { Textarea } from "../ui/text-area";
 
 interface QuestionNodeFormProps {
   node: QuestionNode;
@@ -16,14 +17,15 @@ interface QuestionNodeFormProps {
 const QuestionNodeForm: React.FC<QuestionNodeFormProps> = ({
   node,
   onUpdate,
-  showValidation
+  showValidation,
 }) => {
   const [question, setQuestion] = useState<string>(node.data.question);
   const [options, setOptions] = useState<string[]>(node.data.options);
-  const [newOption, setNewOption] = useState<string>('');
-  
+  const [newOption, setNewOption] = useState<string>("");
+
   const isQuestionValid = question.trim().length > 0;
-  const areOptionsValid = options.length >= 2 && options.every(opt => opt.trim().length > 0);
+  const areOptionsValid =
+    options.length >= 2 && options.every((opt) => opt.trim().length > 0);
   const isValid = isQuestionValid && areOptionsValid;
 
   const handleQuestionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -33,8 +35,8 @@ const QuestionNodeForm: React.FC<QuestionNodeFormProps> = ({
       ...node,
       data: {
         ...node.data,
-        question: newQuestion
-      }
+        question: newQuestion,
+      },
     });
   };
 
@@ -46,8 +48,8 @@ const QuestionNodeForm: React.FC<QuestionNodeFormProps> = ({
       ...node,
       data: {
         ...node.data,
-        options: newOptions
-      }
+        options: newOptions,
+      },
     });
   };
 
@@ -58,23 +60,23 @@ const QuestionNodeForm: React.FC<QuestionNodeFormProps> = ({
       ...node,
       data: {
         ...node.data,
-        options: newOptions
-      }
+        options: newOptions,
+      },
     });
   };
 
   const handleAddOption = () => {
-    if (newOption.trim() === '') return;
-    
+    if (newOption.trim() === "") return;
+
     const newOptions = [...options, newOption.trim()];
     setOptions(newOptions);
-    setNewOption('');
+    setNewOption("");
     onUpdate({
       ...node,
       data: {
         ...node.data,
-        options: newOptions
-      }
+        options: newOptions,
+      },
     });
   };
 
@@ -90,7 +92,7 @@ const QuestionNodeForm: React.FC<QuestionNodeFormProps> = ({
         <HelpCircle className="h-5 w-5" />
         <h3 className="text-lg font-medium">Question Configuration</h3>
       </div>
-      
+
       <div className="space-y-2">
         <Label htmlFor="question-text" className="text-sm text-gray-600">
           Question Text
@@ -100,12 +102,16 @@ const QuestionNodeForm: React.FC<QuestionNodeFormProps> = ({
           value={question}
           onChange={handleQuestionChange}
           placeholder="Enter your question here..."
-          className={`min-h-[100px] ${!isQuestionValid && showValidation ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
+          className={`min-h-[100px] ${
+            !isQuestionValid && showValidation
+              ? "border-red-500 focus-visible:ring-red-500"
+              : ""
+          }`}
         />
         {!isQuestionValid && showValidation && (
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             className="text-sm text-red-500 mt-1"
           >
             Question text is required
@@ -118,11 +124,9 @@ const QuestionNodeForm: React.FC<QuestionNodeFormProps> = ({
 
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <Label className="text-sm text-gray-600">
-            Answer Options
-          </Label>
+          <Label className="text-sm text-gray-600">Answer Options</Label>
           {options.length < 2 && showValidation && (
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="text-sm text-red-500"
@@ -131,10 +135,10 @@ const QuestionNodeForm: React.FC<QuestionNodeFormProps> = ({
             </motion.p>
           )}
         </div>
-        
+
         <motion.div className="space-y-2">
           {options.map((option, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -146,7 +150,11 @@ const QuestionNodeForm: React.FC<QuestionNodeFormProps> = ({
                 value={option}
                 onChange={(e) => handleOptionChange(index, e.target.value)}
                 placeholder={`Option ${index + 1}`}
-                className={`${option.trim() === '' && showValidation ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
+                className={`${
+                  option.trim() === "" && showValidation
+                    ? "border-red-500 focus-visible:ring-red-500"
+                    : ""
+                }`}
               />
               <Button
                 type="button"
@@ -167,7 +175,7 @@ const QuestionNodeForm: React.FC<QuestionNodeFormProps> = ({
             onChange={(e) => setNewOption(e.target.value)}
             placeholder="New option"
             onKeyDown={(e) => {
-              if (e.key === 'Enter' && newOption.trim() !== '') {
+              if (e.key === "Enter" && newOption.trim() !== "") {
                 e.preventDefault();
                 handleAddOption();
               }
@@ -176,14 +184,14 @@ const QuestionNodeForm: React.FC<QuestionNodeFormProps> = ({
           <Button
             type="button"
             onClick={handleAddOption}
-            disabled={newOption.trim() === ''}
+            disabled={newOption.trim() === ""}
             className="flex items-center gap-1"
           >
             <Plus className="h-4 w-4" />
             Add
           </Button>
         </div>
-        
+
         <p className="text-xs text-gray-500 mt-1">
           Add at least 2 options that the customer can choose from.
         </p>

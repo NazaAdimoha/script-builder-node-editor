@@ -5,7 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// Generate a unique ID
 export function generateId(prefix: string = "node"): string {
   return `${prefix}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 }
@@ -24,7 +23,7 @@ export function getNodeColor(nodeType: string): string {
   }
 }
 
-// Format node title based on node type
+// I want to Format node title based on node type
 export function formatNodeTitle(nodeType: string): string {
   switch (nodeType) {
     case "greeting":

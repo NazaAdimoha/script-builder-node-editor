@@ -1,17 +1,14 @@
-// Node types enum
 export enum NodeType {
   GREETING = "greeting",
   QUESTION = "question",
   INFORMATION = "information",
 }
 
-// Base node interface
 export interface BaseNode {
   id: string;
   type: NodeType;
 }
 
-// Greeting node
 export interface GreetingNode extends BaseNode {
   type: NodeType.GREETING;
   data: {
@@ -19,7 +16,6 @@ export interface GreetingNode extends BaseNode {
   };
 }
 
-// Question node
 export interface QuestionNode extends BaseNode {
   type: NodeType.QUESTION;
   data: {
@@ -28,7 +24,6 @@ export interface QuestionNode extends BaseNode {
   };
 }
 
-// Information node
 export interface InformationNode extends BaseNode {
   type: NodeType.INFORMATION;
   data: {
@@ -36,10 +31,8 @@ export interface InformationNode extends BaseNode {
   };
 }
 
-// Union type for all node types
 export type Node = GreetingNode | QuestionNode | InformationNode;
 
-// Function to create a new node with default values
 export const createNewNode = (type: NodeType): Node => {
   const id = `node-${Date.now()}`;
 
