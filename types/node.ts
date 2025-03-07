@@ -66,3 +66,28 @@ export const createNewNode = (type: NodeType): Node => {
       };
   }
 };
+
+export function updateNodeData<T extends Node>(
+  node: T,
+  updatedData: Partial<T["data"]>
+): T {
+  return {
+    ...node,
+    data: {
+      ...node.data,
+      ...updatedData,
+    },
+  };
+}
+
+export function isGreetingNode(node: Node): node is GreetingNode {
+  return node.type === NodeType.GREETING;
+}
+
+export function isQuestionNode(node: Node): node is QuestionNode {
+  return node.type === NodeType.QUESTION;
+}
+
+export function isInformationNode(node: Node): node is InformationNode {
+  return node.type === NodeType.INFORMATION;
+}
