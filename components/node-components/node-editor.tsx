@@ -197,7 +197,7 @@ const NodeEditor: React.FC = () => {
 
               {/* AI Analysis Button */}
               <motion.div
-                className="mt-4 flex justify-end"
+                className="mt-4 flex justify-end cursor-pointer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
